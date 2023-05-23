@@ -16,7 +16,7 @@ dependencies = ["torch",
                 "pillow",
                 "matplotlib",
                 "tqdm",
-                "umap"]
+                "umap-learn"]
 
 [tool.setuptools.packages.find]
 exclude = []
