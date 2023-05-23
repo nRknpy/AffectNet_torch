@@ -11,6 +11,8 @@ numpy = "*"
 pandas = "*"
 matplotlib = "*"
 pillow = "*"
+tqdm = "*"
+umap = "*"
 
 [dev-packages]
 mypy = "*"

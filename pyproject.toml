@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "torchaffectnet"
+description = "AffectNet for torch"
+version = "0.0.0"
+readme = "README.md"
+license = {file = "LICENSE"}
+dependencies = ["torch",
+                "torchvision",
+                "torchaudio",
+                "numpy",
+                "pandas",
+                "pillow",
+                "matplotlib",
+                "tqdm",
+                "umap"]
+
+[tool.setuptools.packages.find]
+exclude = []
