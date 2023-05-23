@@ -28,12 +28,10 @@ def cls_tokens(model, tokenizer, dataset, device):
     return torch.stack(tokens).squeeze(), torch.tensor(labels)
 
 
-def plot_tokens(tokens, labels, n_neighbors):
+def plot_tokens(tokens, labels, n_neighbors, id2label=ID2LABEL):
     umap = UMAP(n_neighbors=n_neighbors)
     zs = umap.fit_transform(tokens.numpy())
     ys = labels.numpy()
-    print(zs.shape)
-    print(ys.shape)
     fig = plt.figure()
     ax = fig.add_subplot()
     ax.set_xlabel('feature-1')
@@ -44,14 +42,14 @@ def plot_tokens(tokens, labels, n_neighbors):
     for x, y in zip(zs, ys):
         mp = ax.scatter(x[0], x[1],
                         alpha=1,
-                        label=ID2LABEL[y],
+                        label=id2label[y],
                         # c=label2color[y],
                         c=y,
                         cmap=cmap,
                         vmin=0,
                         vmax=len(set(ys)),
                         s=3,)
-        label2point[ID2LABEL[y]] = mp
+        label2point[id2label[y]] = mp
     labels, handles = zip(*sorted(label2point.items()))
     fig.legend(handles, labels, loc='right')
     plt.show()
