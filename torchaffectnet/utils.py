@@ -1,7 +1,7 @@
 from PIL import Image
 from tqdm import tqdm
 import torch
-from umap import UMAP
+from umap.umap_ import UMAP
 import matplotlib.pyplot as plt
 import matplotlib.colors as colors
 import matplotlib.cm as cm

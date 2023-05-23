@@ -12,7 +12,7 @@ pandas = "*"
 matplotlib = "*"
 pillow = "*"
 tqdm = "*"
-umap = "*"
+umap-learn = "*"
 
 [dev-packages]
 mypy = "*"
