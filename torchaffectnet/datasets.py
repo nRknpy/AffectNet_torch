@@ -51,13 +51,13 @@ class AffectNetDataset(Dataset):
             target = torch.tensor(
                 self.df['expression'][idx], dtype=torch.int64)
         elif self.mode == 'valence':
-            target = torch.tensor([self.df['valence'][idx]])
+            target = torch.tensor([self.df['valence'][idx]], dtype=torch.float)
         elif self.mode == 'arousal':
-            target = torch.tensor([self.df['arousal'][idx]])
+            target = torch.tensor([self.df['arousal'][idx]], dtype=torch.float)
         else:
             target = torch.tensor([self.df['valence'][idx],
-                                   self.df['arousal'][idx]])
-        return img.float(), target.float()
+                                   self.df['arousal'][idx]], dtype=torch.float)
+        return img.float(), target
 
     def __len__(self):
         return len(self.df)
