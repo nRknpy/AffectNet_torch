@@ -6,7 +6,7 @@ import os
 
 from typing import List
 
-from utils import pil_loader
+from .utils import pil_loader
 
 
 class AffectNetDataset(Dataset):
