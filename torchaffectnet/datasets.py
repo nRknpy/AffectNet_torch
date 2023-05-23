@@ -48,7 +48,8 @@ class AffectNetDataset(Dataset):
         if self.transform:
             img = self.transform(img)
         if self.mode == 'classification':
-            target = torch.tensor(self.df['expression'][idx])
+            target = torch.tensor(
+                self.df['expression'][idx], dtype=torch.int64)
         elif self.mode == 'valence':
             target = torch.tensor([self.df['valence'][idx]])
         elif self.mode == 'arousal':
