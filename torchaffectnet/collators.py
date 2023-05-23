@@ -25,7 +25,7 @@ class Collator:
         pass
 
     def __call__(self, examples) -> Any:
-        self.collate_fn(examples)
+        return self.collate_fn(examples)
 
     def collate_fn(self, examples) -> Dict[str, Any]:
         imgs, targets = zip(*examples)
