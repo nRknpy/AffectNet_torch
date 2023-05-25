@@ -13,9 +13,11 @@ matplotlib = "*"
 pillow = "*"
 tqdm = "*"
 umap-learn = "*"
+torchaffectnet = {editable = true, path = "."}
 
 [dev-packages]
 mypy = "*"
+ipykernel = "*"
 
 [requires]
 python_version = "3.11"
