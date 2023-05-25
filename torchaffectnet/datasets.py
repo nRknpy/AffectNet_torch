@@ -4,7 +4,7 @@ from torchvision.transforms import ElasticTransform
 import pandas as pd
 import os
 
-from typing import List
+from typing import List, Tuple
 
 from .utils import pil_loader
 
@@ -13,6 +13,7 @@ class AffectNetDataset(Dataset):
     def __init__(self,
                  csvfile: str,
                  root: str,
+                 exclude_label: Tuple[int] = (8, 9, 10),
                  mode: str = 'classification',
                  crop: bool = False,
                  transform=None,
@@ -31,8 +32,12 @@ class AffectNetDataset(Dataset):
                 invalid_files)]
             self.df = self.df
 
-        self.df = self.df[~((self.df['expression'] == 9) | (
-            self.df['expression'] == 10))].reset_index(drop=True)
+        for el in exclude_label:
+            self.df = self.df[~(self.df['expression'] == el)
+                              ].reset_index(drop=True)
+
+        # self.df = self.df[~((self.df['expression'] == 9) | (
+        #     self.df['expression'] == 10))].reset_index(drop=True)
 
     def __getitem__(self, idx):
         try:
@@ -68,6 +73,7 @@ class AffectNetDatasetForSupCon(Dataset):
                  csvfile: str,
                  root: str,
                  transform,
+                 exclude_label: Tuple[int] = (8, 9, 10),
                  return_labels: bool = True,
                  crop: bool = False,
                  invalid_files: List[str] = None):
@@ -83,8 +89,12 @@ class AffectNetDatasetForSupCon(Dataset):
                 invalid_files)]
             self.df = self.df
 
-        self.df = self.df[~((self.df['expression'] == 9) | (
-            self.df['expression'] == 10))].reset_index(drop=True)
+        for el in exclude_label:
+            self.df = self.df[~(self.df['expression'] == el)
+                              ].reset_index(drop=True)
+
+        # self.df = self.df[~((self.df['expression'] == 9) | (
+        #     self.df['expression'] == 10))].reset_index(drop=True)
 
     def __getitem__(self, idx):
         try:
