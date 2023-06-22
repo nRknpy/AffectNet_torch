@@ -72,7 +72,8 @@ class AffectNetDatasetForSupCon(Dataset):
     def __init__(self,
                  csvfile: str,
                  root: str,
-                 transform,
+                 transform1,
+                 transform2,
                  exclude_label: Tuple[int] = (8, 9, 10),
                  return_labels: bool = True,
                  crop: bool = False,
@@ -80,7 +81,8 @@ class AffectNetDatasetForSupCon(Dataset):
         self.df = pd.read_csv(csvfile)
         self.root = root
         self.crop = crop
-        self.transform = transform
+        self.transform1 = transform1
+        self.transform2 = transform2
         self.return_labels = return_labels
         self.invalid_files = invalid_files
 
@@ -107,8 +109,8 @@ class AffectNetDatasetForSupCon(Dataset):
                             self.df['face_y'][idx],
                             self.df['face_x'][idx]+self.df['face_width'][idx],
                             self.df['face_y'][idx]+self.df['face_height'][idx],))
-        img1 = self.transform(img)
-        img2 = self.transform(img)
+        img1 = self.transform1(img)
+        img2 = self.transform2(img)
         if self.return_labels:
             target = self.labeling(idx)
             return (img1.float(), img2.float()), target
